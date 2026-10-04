@@ -8,6 +8,7 @@
 class BFWVocabManager {
   constructor() {
     this.topics = [];
+    this.downloaded = new Set();
     this.currentFilter = "ALL";
     this.searchQuery = "";
     this.activeTopic = null;
@@ -17,9 +18,18 @@ class BFWVocabManager {
   }
 
   async init() {
+    this.loadDownloaded();
     await this.loadTopics();
+    this.syncToAndroidApps();
     this.bindEvents();
     this.render();
+  }
+
+  loadDownloaded() {
+    try {
+      const saved = localStorage.getItem("bfw_downloaded_topics");
+      if (saved) this.downloaded = new Set(JSON.parse(saved));
+    } catch (e) { }
   }
 
   announce(msg) {
@@ -80,6 +90,42 @@ class BFWVocabManager {
     if (wordsEl) wordsEl.textContent = `${totalWords} Vokabeln`;
   }
 
+  toggleDownloadTopic(topic) {
+    if (this.downloaded.has(topic.id)) {
+      this.downloaded.delete(topic.id);
+      this.syncToAndroidApps();
+      this.announce(`Thema "${topic.title}" aus VokabelStar und VokabelMeister deaktiviert.`);
+    } else {
+      this.downloaded.add(topic.id);
+      this.syncToAndroidApps();
+      this.announce(`Thema "${topic.title}" heruntergeladen und sofort in beiden Lern-Apps aktiviert!`);
+    }
+    this.render();
+  }
+
+  downloadAllTopics() {
+    this.topics.forEach(t => this.downloaded.add(t.id));
+    this.syncToAndroidApps();
+    this.announce("Alle Themen wurden heruntergeladen und in VokabelStar und VokabelMeister aktiviert.");
+    this.render();
+  }
+
+  syncToAndroidApps() {
+    localStorage.setItem("bfw_downloaded_topics", JSON.stringify([...this.downloaded]));
+    const activeTopics = this.topics.filter(t => this.downloaded.has(t.id));
+    if (window.AndroidSyncBridge && window.AndroidSyncBridge.syncTopics) {
+      window.AndroidSyncBridge.syncTopics(JSON.stringify(activeTopics));
+    }
+  }
+
+  openApp(packageName) {
+    if (window.AndroidSyncBridge && window.AndroidSyncBridge.openApp) {
+      window.AndroidSyncBridge.openApp(packageName);
+    } else {
+      alert("App-Schnellstart ist auf deinem Android-Gerät verfügbar.");
+    }
+  }
+
   // ------------------------------------------
   // EVENT BINDINGS
   // ------------------------------------------
@@ -114,6 +160,10 @@ class BFWVocabManager {
 
     document.getElementById("btn-open-import")?.addEventListener("click", () => {
       this.openImportModal();
+    });
+
+    document.getElementById("btn-download-all")?.addEventListener("click", () => {
+      this.downloadAllTopics();
     });
 
     document.getElementById("btn-backup-all")?.addEventListener("click", () => {
@@ -274,6 +324,7 @@ class BFWVocabManager {
       if (topic.level === "BFW 2") badgeClass = "badge-bfw2";
 
       const wordCount = topic.words ? topic.words.length : 0;
+      const isDownloaded = this.downloaded.has(topic.id);
 
       card.innerHTML = `
         <div class="topic-card-header">
@@ -287,17 +338,23 @@ class BFWVocabManager {
         <p class="topic-desc">${this.escapeHtml(topic.desc || "Keine Beschreibung vorhanden.")}</p>
         
         <div class="topic-card-actions">
-          <button type="button" class="btn btn-primary btn-manage" data-id="${topic.id}">
+          <button type="button" class="btn ${isDownloaded ? 'btn-secondary btn-active-sync' : 'btn-primary'} btn-toggle-download" data-id="${topic.id}" style="${isDownloaded ? 'border: 2px solid var(--success); color: var(--success); font-weight: 700;' : ''}">
+            <span>${isDownloaded ? '✅ In beiden Apps aktiv' : '📥 Herunterladen & in beiden Apps aktivieren'}</span>
+          </button>
+          
+          <button type="button" class="btn btn-secondary btn-manage" data-id="${topic.id}">
             <span>📝 Vokabeln verwalten (${wordCount})</span>
           </button>
+          
           <div class="topic-action-row">
-            <button type="button" class="btn btn-secondary btn-sm flex-1 btn-export-star" data-id="${topic.id}" title="Für VokabelStar exportieren">
-              <span>⭐ An VokabelStar</span>
+            <button type="button" class="btn btn-secondary btn-sm flex-1 btn-open-star" title="VokabelStar direkt starten">
+              <span>🚀 Zu VokabelStar</span>
             </button>
-            <button type="button" class="btn btn-secondary btn-sm flex-1 btn-export-meister" data-id="${topic.id}" title="Für VokabelMeister exportieren">
-              <span>✍️ An VokabelMeister</span>
+            <button type="button" class="btn btn-secondary btn-sm flex-1 btn-open-meister" title="VokabelMeister direkt starten">
+              <span>🚀 Zu VokabelMeister</span>
             </button>
           </div>
+
           <div class="topic-action-row">
             <button type="button" class="btn btn-secondary btn-sm flex-1 btn-edit-topic" data-id="${topic.id}" title="Thema bearbeiten">
               <span>✏️ Bearbeiten</span>
@@ -310,14 +367,17 @@ class BFWVocabManager {
       `;
 
       // Event Listeners
+      card.querySelector(".btn-toggle-download").addEventListener("click", () => {
+        this.toggleDownloadTopic(topic);
+      });
       card.querySelector(".btn-manage").addEventListener("click", () => {
         this.openVocabModal(topic);
       });
-      card.querySelector(".btn-export-star").addEventListener("click", () => {
-        this.exportForVokabelStar(topic);
+      card.querySelector(".btn-open-star").addEventListener("click", () => {
+        this.openApp("de.lauri.vokabelstar");
       });
-      card.querySelector(".btn-export-meister").addEventListener("click", () => {
-        this.exportForVokabelMeister(topic);
+      card.querySelector(".btn-open-meister").addEventListener("click", () => {
+        this.openApp("de.lauri.vokabelmeister");
       });
       card.querySelector(".btn-edit-topic").addEventListener("click", () => {
         this.openTopicModal(topic);

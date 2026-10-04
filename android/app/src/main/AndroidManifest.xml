@@ -33,6 +33,11 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
+
+        <provider
+            android:name=".VocabContentProvider"
+            android:authorities="de.lauri.bfwenglisch.vocabprovider"
+            android:exported="true" />
     </application>
 
     <!-- Permissions -->

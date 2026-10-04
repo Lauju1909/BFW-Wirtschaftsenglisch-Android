@@ -2090,5 +2090,1207 @@
         "lang_back": "Deutsch"
       }
     ]
+  },
+  {
+    "id": "jobfit_unit5",
+    "title": "Jobfit Unit 5: Medien, Prominente & Werbung",
+    "subtitle": "AVW Englisch • S. 45–55",
+    "level": "BFW 1",
+    "icon": "📺",
+    "desc": "Medienlandschaft, Prominente, Fernsehen, Werbung, Berühmtheiten und Meinungsäußerung.",
+    "count": 110,
+    "words": [
+      {
+        "front": "media",
+        "back": "Medien",
+        "note": "S. 45"
+      },
+      {
+        "front": "star",
+        "back": "Star, Stern",
+        "note": "S. 45"
+      },
+      {
+        "front": "basically",
+        "back": "im Grunde, grundsätzlich",
+        "note": "S. 45"
+      },
+      {
+        "front": "singer",
+        "back": "Sänger/in",
+        "note": "S. 45"
+      },
+      {
+        "front": "writer",
+        "back": "Schriftsteller/in, Autor/in",
+        "note": "S. 45"
+      },
+      {
+        "front": "politician",
+        "back": "Politiker/in",
+        "note": "S. 45"
+      },
+      {
+        "front": "celebrity",
+        "back": "Prominente/r, Berühmtheit",
+        "note": "S. 45"
+      },
+      {
+        "front": "to recognize",
+        "back": "(wieder) erkennen",
+        "note": "S. 45"
+      },
+      {
+        "front": "to admire",
+        "back": "bewundern",
+        "note": "S. 45"
+      },
+      {
+        "front": "advertiser",
+        "back": "Inserent/in, Werbefirma",
+        "note": "S. 45"
+      },
+      {
+        "front": "product",
+        "back": "Produkt, Erzeugnis",
+        "note": "S. 45"
+      },
+      {
+        "front": "actor",
+        "back": "Schauspieler",
+        "note": "S. 45"
+      },
+      {
+        "front": "actress",
+        "back": "Schauspielerin",
+        "note": "S. 45"
+      },
+      {
+        "front": "colouring",
+        "back": "Einfärbung",
+        "note": "S. 45"
+      },
+      {
+        "front": "icon",
+        "back": "Ikone, Symbol",
+        "note": "S. 46"
+      },
+      {
+        "front": "acting",
+        "back": "schauspielerisch",
+        "note": "S. 46"
+      },
+      {
+        "front": "short",
+        "back": "kurz",
+        "note": "S. 46"
+      },
+      {
+        "front": "director",
+        "back": "Regisseur/in",
+        "note": "S. 46"
+      },
+      {
+        "front": "east",
+        "back": "östlich",
+        "note": "S. 46"
+      },
+      {
+        "front": "rebel",
+        "back": "Rebell",
+        "note": "S. 46"
+      },
+      {
+        "front": "cause",
+        "back": "Grund, Anlass",
+        "note": "S. 46"
+      },
+      {
+        "front": "handsome",
+        "back": "gut aussehend",
+        "note": "S. 46"
+      },
+      {
+        "front": "idol",
+        "back": "Idol, Vorbild",
+        "note": "S. 46"
+      },
+      {
+        "front": "unfortunately",
+        "back": "unglücklicherweise, leider",
+        "note": "S. 46"
+      },
+      {
+        "front": "crash",
+        "back": "Unfall",
+        "note": "S. 46"
+      },
+      {
+        "front": "west",
+        "back": "westlich",
+        "note": "S. 46"
+      },
+      {
+        "front": "ugly",
+        "back": "hässlich",
+        "note": "S. 46"
+      },
+      {
+        "front": "apartment",
+        "back": "Wohnung, Apartment",
+        "note": "S. 47"
+      },
+      {
+        "front": "skipper",
+        "back": "Kapitän",
+        "note": "S. 47"
+      },
+      {
+        "front": "lane",
+        "back": "Gasse, Weg",
+        "note": "S. 47"
+      },
+      {
+        "front": "coach",
+        "back": "Reisebus",
+        "note": "S. 47"
+      },
+      {
+        "front": "birth",
+        "back": "Geburt",
+        "note": "S. 47"
+      },
+      {
+        "front": "powerful",
+        "back": "mächtig, einflussreich",
+        "note": "S. 48"
+      },
+      {
+        "front": "advertising",
+        "back": "Werbung, Reklame",
+        "note": "S. 48"
+      },
+      {
+        "front": "charity",
+        "back": "Wohltätigkeit",
+        "note": "S. 48"
+      },
+      {
+        "front": "disabled",
+        "back": "(körper)behindert",
+        "note": "S. 48"
+      },
+      {
+        "front": "wheelchair",
+        "back": "Rollstuhl",
+        "note": "S. 48"
+      },
+      {
+        "front": "delighted",
+        "back": "(sehr) erfreut",
+        "note": "S. 48"
+      },
+      {
+        "front": "independent",
+        "back": "unabhängig",
+        "note": "S. 48"
+      },
+      {
+        "front": "malaria",
+        "back": "Malaria",
+        "note": "S. 48"
+      },
+      {
+        "front": "net",
+        "back": "(Moskito-)Netz",
+        "note": "S. 48"
+      },
+      {
+        "front": "to support",
+        "back": "unterstützen",
+        "note": "S. 48"
+      },
+      {
+        "front": "to donate",
+        "back": "spenden",
+        "note": "S. 48"
+      },
+      {
+        "front": "dollar",
+        "back": "Dollar",
+        "note": "S. 48"
+      },
+      {
+        "front": "clip",
+        "back": "(Video-)Clip, kurzer (Werbe-)Film",
+        "note": "S. 48"
+      },
+      {
+        "front": "luxury",
+        "back": "Luxus",
+        "note": "S. 48"
+      },
+      {
+        "front": "southern",
+        "back": "südlich",
+        "note": "S. 48"
+      },
+      {
+        "front": "multinational",
+        "back": "multinational",
+        "note": "S. 48"
+      },
+      {
+        "front": "connector",
+        "back": "Bindewort",
+        "note": "S. 49"
+      },
+      {
+        "front": "untrue",
+        "back": "unwahr",
+        "note": "S. 49"
+      },
+      {
+        "front": "roadie",
+        "back": "Roadie",
+        "note": "S. 50"
+      },
+      {
+        "front": "beautician",
+        "back": "Kosmetiker/in",
+        "note": "S. 50"
+      },
+      {
+        "front": "lighting",
+        "back": "Beleuchtung, Licht",
+        "note": "S. 50"
+      },
+      {
+        "front": "sound",
+        "back": "Ton",
+        "note": "S. 50"
+      },
+      {
+        "front": "technician",
+        "back": "Techniker/in",
+        "note": "S. 50"
+      },
+      {
+        "front": "rigger",
+        "back": "Bühnenarbeiter/in",
+        "note": "S. 50"
+      },
+      {
+        "front": "to set up",
+        "back": "aufbauen",
+        "note": "S. 50"
+      },
+      {
+        "front": "to control",
+        "back": "kontrollieren, regeln",
+        "note": "S. 50"
+      },
+      {
+        "front": "stage",
+        "back": "Bühne",
+        "note": "S. 50"
+      },
+      {
+        "front": "microphone",
+        "back": "Mikrophon",
+        "note": "S. 50"
+      },
+      {
+        "front": "steel",
+        "back": "Stahl",
+        "note": "S. 50"
+      },
+      {
+        "front": "scaffolding",
+        "back": "(Bau-)Gerüst",
+        "note": "S. 50"
+      },
+      {
+        "front": "catering",
+        "back": "Versorgung mit Speisen und Getränken",
+        "note": "S. 50"
+      },
+      {
+        "front": "factory",
+        "back": "Fabrik",
+        "note": "S. 51"
+      },
+      {
+        "front": "emergency",
+        "back": "Notfall",
+        "note": "S. 51"
+      },
+      {
+        "front": "first aid",
+        "back": "erste Hilfe",
+        "note": "S. 51"
+      },
+      {
+        "front": "exit",
+        "back": "Ausgang",
+        "note": "S. 51"
+      },
+      {
+        "front": "substance",
+        "back": "Substanz, Stoff",
+        "note": "S. 51"
+      },
+      {
+        "front": "toxic",
+        "back": "giftig, toxisch",
+        "note": "S. 51"
+      },
+      {
+        "front": "slippery",
+        "back": "glatt, rutschig",
+        "note": "S. 51"
+      },
+      {
+        "front": "apprentice",
+        "back": "Lehrling, Auszubildende/r",
+        "note": "S. 51"
+      },
+      {
+        "front": "work experience",
+        "back": "Praktikum",
+        "note": "S. 51"
+      },
+      {
+        "front": "supervisor",
+        "back": "Ausbilder/in",
+        "note": "S. 51"
+      },
+      {
+        "front": "report",
+        "back": "Bericht",
+        "note": "S. 51"
+      },
+      {
+        "front": "to care",
+        "back": "sich kümmern",
+        "note": "S. 52"
+      },
+      {
+        "front": "tomb",
+        "back": "Grab",
+        "note": "S. 52"
+      },
+      {
+        "front": "raider",
+        "back": "Plünderer, Schänder",
+        "note": "S. 52"
+      },
+      {
+        "front": "Cambodia",
+        "back": "Kambodscha",
+        "note": "S. 52"
+      },
+      {
+        "front": "to realize",
+        "back": "(sich) bewusst werden",
+        "note": "S. 52"
+      },
+      {
+        "front": "horrible",
+        "back": "schrecklich, furchtbar",
+        "note": "S. 52"
+      },
+      {
+        "front": "landmine",
+        "back": "Landmine",
+        "note": "S. 52"
+      },
+      {
+        "front": "war",
+        "back": "Krieg",
+        "note": "S. 52"
+      },
+      {
+        "front": "to injure",
+        "back": "verletzen",
+        "note": "S. 52"
+      },
+      {
+        "front": "thousand",
+        "back": "tausend",
+        "note": "S. 52"
+      },
+      {
+        "front": "to ban",
+        "back": "verbieten",
+        "note": "S. 52"
+      },
+      {
+        "front": "refugee",
+        "back": "Flüchtling",
+        "note": "S. 52"
+      },
+      {
+        "front": "ambassador",
+        "back": "Botschafter/in",
+        "note": "S. 52"
+      },
+      {
+        "front": "label",
+        "back": "Aufkleber, Etikett",
+        "note": "S. 53"
+      },
+      {
+        "front": "category",
+        "back": "Kategorie, Klasse",
+        "note": "S. 53"
+      },
+      {
+        "front": "bodycare",
+        "back": "Körperpflege",
+        "note": "S. 53"
+      },
+      {
+        "front": "cosmetics",
+        "back": "Kosmetik(a)",
+        "note": "S. 53"
+      },
+      {
+        "front": "healthcare",
+        "back": "Gesundheit(sfürsorge)",
+        "note": "S. 53"
+      },
+      {
+        "front": "pea",
+        "back": "Erbse",
+        "note": "S. 53"
+      },
+      {
+        "front": "shampoo",
+        "back": "Shampoo",
+        "note": "S. 53"
+      },
+      {
+        "front": "India",
+        "back": "Indien",
+        "note": "S. 53"
+      },
+      {
+        "front": "Hindi",
+        "back": "Hindi",
+        "note": "S. 53"
+      },
+      {
+        "front": "dislike",
+        "back": "Abneigung",
+        "note": "S. 54"
+      },
+      {
+        "front": "impatient",
+        "back": "ungeduldig",
+        "note": "S. 54"
+      },
+      {
+        "front": "boutique",
+        "back": "Boutique",
+        "note": "S. 54"
+      },
+      {
+        "front": "jeans",
+        "back": "Jeans",
+        "note": "S. 54"
+      },
+      {
+        "front": "American",
+        "back": "amerikanisch",
+        "note": "S. 54"
+      },
+      {
+        "front": "store",
+        "back": "Laden, Geschäft",
+        "note": "S. 54"
+      },
+      {
+        "front": "bargain",
+        "back": "(günstiges) Angebot, Schnäppchen",
+        "note": "S. 54"
+      },
+      {
+        "front": "designer",
+        "back": "Designer/in",
+        "note": "S. 54"
+      },
+      {
+        "front": "quality",
+        "back": "Qualität",
+        "note": "S. 54"
+      },
+      {
+        "front": "to be worth",
+        "back": "wert sein",
+        "note": "S. 54"
+      },
+      {
+        "front": "average",
+        "back": "Durchschnitt, durchschnittlich",
+        "note": "S. 54"
+      },
+      {
+        "front": "to translate",
+        "back": "übersetzen, übertragen",
+        "note": "S. 55"
+      },
+      {
+        "front": "term",
+        "back": "Bezeichnung, Ausdruck",
+        "note": "S. 55"
+      },
+      {
+        "front": "to argue",
+        "back": "(sich) streiten",
+        "note": "S. 55"
+      }
+    ]
+  },
+  {
+    "id": "jobfit_unit6",
+    "title": "Jobfit Unit 6: Globalisierung, Berufe & Alltag",
+    "subtitle": "AVW Englisch • S. 56–65",
+    "level": "BFW 1",
+    "icon": "🌐",
+    "desc": "Outsourcing, Wirtschaft, Arbeitswelt, Handwerk, Einwanderung, Essen & Alltag.",
+    "count": 126,
+    "words": [
+      {
+        "front": "original",
+        "back": "Original",
+        "note": "S. 56"
+      },
+      {
+        "front": "pirate",
+        "back": "Pirat",
+        "note": "S. 56"
+      },
+      {
+        "front": "nowadays",
+        "back": "heutzutage",
+        "note": "S. 56"
+      },
+      {
+        "front": "guarantee",
+        "back": "Garantie",
+        "note": "S. 56"
+      },
+      {
+        "front": "China",
+        "back": "China",
+        "note": "S. 56"
+      },
+      {
+        "front": "European",
+        "back": "europäisch",
+        "note": "S. 56"
+      },
+      {
+        "front": "outsourcing",
+        "back": "Auslagern (von Arbeitsprozessen)",
+        "note": "S. 56"
+      },
+      {
+        "front": "Rome",
+        "back": "Rom",
+        "note": "S. 56"
+      },
+      {
+        "front": "Turin",
+        "back": "Turin",
+        "note": "S. 56"
+      },
+      {
+        "front": "Milan",
+        "back": "Mailand",
+        "note": "S. 56"
+      },
+      {
+        "front": "to replace",
+        "back": "ersetzen, austauschen",
+        "note": "S. 56"
+      },
+      {
+        "front": "handmade",
+        "back": "handgemacht, -gefertigt",
+        "note": "S. 56"
+      },
+      {
+        "front": "Chinese",
+        "back": "chinesisch",
+        "note": "S. 56"
+      },
+      {
+        "front": "immigrant",
+        "back": "Einwanderer, Einwanderin",
+        "note": "S. 56"
+      },
+      {
+        "front": "cheaply",
+        "back": "billig",
+        "note": "S. 56"
+      },
+      {
+        "front": "elsewhere",
+        "back": "anderswo, woanders",
+        "note": "S. 56"
+      },
+      {
+        "front": "foreign",
+        "back": "ausländisch, fremd",
+        "note": "S. 56"
+      },
+      {
+        "front": "production",
+        "back": "Produktion, Herstellung",
+        "note": "S. 57"
+      },
+      {
+        "front": "comparison",
+        "back": "Vergleich, Steigerung",
+        "note": "S. 57"
+      },
+      {
+        "front": "worse",
+        "back": "schlechter, schlimmer",
+        "note": "S. 57"
+      },
+      {
+        "front": "adjective",
+        "back": "Adjektiv, Eigenschaftswort",
+        "note": "S. 57"
+      },
+      {
+        "front": "pretty",
+        "back": "hübsch",
+        "note": "S. 57"
+      },
+      {
+        "front": "Asian",
+        "back": "asiatisch",
+        "note": "S. 57"
+      },
+      {
+        "front": "Japanese",
+        "back": "japanisch",
+        "note": "S. 57"
+      },
+      {
+        "front": "sunglasses",
+        "back": "Sonnenbrille",
+        "note": "S. 57"
+      },
+      {
+        "front": "sales assistant",
+        "back": "Verkäufer/in",
+        "note": "S. 58"
+      },
+      {
+        "front": "clothing",
+        "back": "Bekleidung, Kleidung",
+        "note": "S. 58"
+      },
+      {
+        "front": "blouse",
+        "back": "Bluse",
+        "note": "S. 58"
+      },
+      {
+        "front": "lovely",
+        "back": "schon, hübsch",
+        "note": "S. 58"
+      },
+      {
+        "front": "latest",
+        "back": "neueste",
+        "note": "S. 58"
+      },
+      {
+        "front": "shirt",
+        "back": "Hemd",
+        "note": "S. 58"
+      },
+      {
+        "front": "trousers",
+        "back": "Hose(n)",
+        "note": "S. 58"
+      },
+      {
+        "front": "skirt",
+        "back": "Rock",
+        "note": "S. 58"
+      },
+      {
+        "front": "jacket",
+        "back": "Jacke, Jackett",
+        "note": "S. 58"
+      },
+      {
+        "front": "sky",
+        "back": "Himmel",
+        "note": "S. 58"
+      },
+      {
+        "front": "gap",
+        "back": "Lücke",
+        "note": "S. 59"
+      },
+      {
+        "front": "baker",
+        "back": "Bäcker/in",
+        "note": "S. 59"
+      },
+      {
+        "front": "luckily",
+        "back": "glücklicherweise, zum Glück",
+        "note": "S. 59"
+      },
+      {
+        "front": "throughout",
+        "back": "die ganze Zeit hindurch, während",
+        "note": "S. 59"
+      },
+      {
+        "front": "break",
+        "back": "Pause",
+        "note": "S. 59"
+      },
+      {
+        "front": "to count",
+        "back": "zahlen",
+        "note": "S. 59"
+      },
+      {
+        "front": "opening times",
+        "back": "Öffnungszeiten",
+        "note": "S. 59"
+      },
+      {
+        "front": "placement",
+        "back": "Praktikum",
+        "note": "S. 59"
+      },
+      {
+        "front": "sales",
+        "back": "Schluss-, Ausverkauf",
+        "note": "S. 59"
+      },
+      {
+        "front": "traditionally",
+        "back": "traditionell",
+        "note": "S. 59"
+      },
+      {
+        "front": "queue",
+        "back": "(Warte-)Schlange",
+        "note": "S. 59"
+      },
+      {
+        "front": "adventure",
+        "back": "Abenteuer",
+        "note": "S. 59"
+      },
+      {
+        "front": "to unlock",
+        "back": "aufschließen",
+        "note": "S. 59"
+      },
+      {
+        "front": "purchase",
+        "back": "(Ein-)Kauf",
+        "note": "S. 59"
+      },
+      {
+        "front": "super",
+        "back": "super, großartig",
+        "note": "S. 59"
+      },
+      {
+        "front": "digital",
+        "back": "digital",
+        "note": "S. 59"
+      },
+      {
+        "front": "megapixel",
+        "back": "Megapixel",
+        "note": "S. 59"
+      },
+      {
+        "front": "guilty",
+        "back": "schuldbewusst",
+        "note": "S. 59"
+      },
+      {
+        "front": "reborn",
+        "back": "wiedergeboren",
+        "note": "S. 59"
+      },
+      {
+        "front": "builder",
+        "back": "Bauunternehmer/in",
+        "note": "S. 59"
+      },
+      {
+        "front": "to knock down",
+        "back": "abreißen",
+        "note": "S. 59"
+      },
+      {
+        "front": "to rebuild",
+        "back": "wieder aufbauen",
+        "note": "S. 59"
+      },
+      {
+        "front": "further",
+        "back": "weiter",
+        "note": "S. 59"
+      },
+      {
+        "front": "noisy",
+        "back": "laut, lärmend",
+        "note": "S. 59"
+      },
+      {
+        "front": "motorway",
+        "back": "Autobahn",
+        "note": "S. 59"
+      },
+      {
+        "front": "to shake",
+        "back": "klirren, zittern",
+        "note": "S. 59"
+      },
+      {
+        "front": "lorry",
+        "back": "Lastwagen, Lkw",
+        "note": "S. 59"
+      },
+      {
+        "front": "crack",
+        "back": "Riss, Sprung, Spalt(e)",
+        "note": "S. 59"
+      },
+      {
+        "front": "shabby",
+        "back": "schäbig",
+        "note": "S. 59"
+      },
+      {
+        "front": "uncomfortable",
+        "back": "unbequem, ungemütlich",
+        "note": "S. 59"
+      },
+      {
+        "front": "peaceful",
+        "back": "friedlich, ruhig",
+        "note": "S. 59"
+      },
+      {
+        "front": "sturdy",
+        "back": "massiv, fest",
+        "note": "S. 59"
+      },
+      {
+        "front": "landlord",
+        "back": "Wirt",
+        "note": "S. 59"
+      },
+      {
+        "front": "traditional",
+        "back": "traditionell",
+        "note": "S. 59"
+      },
+      {
+        "front": "darts",
+        "back": "Darts, Pfeilwurfspiel",
+        "note": "S. 59"
+      },
+      {
+        "front": "pool",
+        "back": "(Pool-)Billard",
+        "note": "S. 59"
+      },
+      {
+        "front": "live",
+        "back": "live",
+        "note": "S. 59"
+      },
+      {
+        "front": "excellent",
+        "back": "ausgezeichnet, hervorragend",
+        "note": "S. 59"
+      },
+      {
+        "front": "Thai",
+        "back": "Thai(länder/in)",
+        "note": "S. 59"
+      },
+      {
+        "front": "choice",
+        "back": "Auswahl",
+        "note": "S. 59"
+      },
+      {
+        "front": "cuisine",
+        "back": "Küche, Kochkunst",
+        "note": "S. 59"
+      },
+      {
+        "front": "newly",
+        "back": "neu",
+        "note": "S. 59"
+      },
+      {
+        "front": "hectic",
+        "back": "hektisch",
+        "note": "S. 59"
+      },
+      {
+        "front": "proud",
+        "back": "stolz",
+        "note": "S. 62"
+      },
+      {
+        "front": "to receive",
+        "back": "erhalten, bekommen",
+        "note": "S. 62"
+      },
+      {
+        "front": "award",
+        "back": "Auszeichnung, Preis",
+        "note": "S. 62"
+      },
+      {
+        "front": "to serve",
+        "back": "servieren, anbieten",
+        "note": "S. 62"
+      },
+      {
+        "front": "to attract",
+        "back": "anziehen, anlocken",
+        "note": "S. 62"
+      },
+      {
+        "front": "dairy",
+        "back": "Milch-",
+        "note": "S. 63"
+      },
+      {
+        "front": "nut",
+        "back": "Nuss",
+        "note": "S. 63"
+      },
+      {
+        "front": "protein",
+        "back": "Protein",
+        "note": "S. 63"
+      },
+      {
+        "front": "sausage",
+        "back": "(Brat-)Wurst, Würstchen",
+        "note": "S. 63"
+      },
+      {
+        "front": "carbohydrate",
+        "back": "Kohle(n)hydrat",
+        "note": "S. 63"
+      },
+      {
+        "front": "vitamin",
+        "back": "Vitamin",
+        "note": "S. 63"
+      },
+      {
+        "front": "cucumber",
+        "back": "Gurke",
+        "note": "S. 63"
+      },
+      {
+        "front": "France",
+        "back": "Frankreich",
+        "note": "S. 63"
+      },
+      {
+        "front": "snail",
+        "back": "Schnecke",
+        "note": "S. 63"
+      },
+      {
+        "front": "lemon",
+        "back": "Zitrone",
+        "note": "S. 63"
+      },
+      {
+        "front": "to contain",
+        "back": "enthalten",
+        "note": "S. 63"
+      },
+      {
+        "front": "strawberry",
+        "back": "Erdbeere",
+        "note": "S. 63"
+      },
+      {
+        "front": "lifestyle",
+        "back": "Lebensstil, Lifestyle",
+        "note": "S. 64"
+      },
+      {
+        "front": "fitness",
+        "back": "Fitness, Kondition",
+        "note": "S. 64"
+      },
+      {
+        "front": "trainer",
+        "back": "Trainer/in",
+        "note": "S. 64"
+      },
+      {
+        "front": "nutrition",
+        "back": "Ernährung",
+        "note": "S. 64"
+      },
+      {
+        "front": "to offer",
+        "back": "(an)bieten",
+        "note": "S. 64"
+      },
+      {
+        "front": "overweight",
+        "back": "übergewichtig",
+        "note": "S. 64"
+      },
+      {
+        "front": "to lose weight",
+        "back": "abnehmen",
+        "note": "S. 64"
+      },
+      {
+        "front": "daily",
+        "back": "täglich",
+        "note": "S. 64"
+      },
+      {
+        "front": "physical",
+        "back": "körperlich",
+        "note": "S. 64"
+      },
+      {
+        "front": "stairs",
+        "back": "Treppe(n)",
+        "note": "S. 64"
+      },
+      {
+        "front": "housework",
+        "back": "Hausarbeit(en)",
+        "note": "S. 64"
+      },
+      {
+        "front": "Frisbee",
+        "back": "Wurfscheibe",
+        "note": "S. 64"
+      },
+      {
+        "front": "to improve",
+        "back": "verbessern",
+        "note": "S. 64"
+      },
+      {
+        "front": "salt",
+        "back": "Salz",
+        "note": "S. 64"
+      },
+      {
+        "front": "fibre",
+        "back": "Faser, Ballaststoff",
+        "note": "S. 64"
+      },
+      {
+        "front": "lean",
+        "back": "mager",
+        "note": "S. 64"
+      },
+      {
+        "front": "cereal",
+        "back": "Getreideflocken, Müsli",
+        "note": "S. 64"
+      },
+      {
+        "front": "expression",
+        "back": "Ausdruck",
+        "note": "S. 64"
+      },
+      {
+        "front": "definition",
+        "back": "Definition",
+        "note": "S. 64"
+      },
+      {
+        "front": "heavy",
+        "back": "schwer",
+        "note": "S. 64"
+      },
+      {
+        "front": "health",
+        "back": "Gesundheit(szustand)",
+        "note": "S. 64"
+      },
+      {
+        "front": "client",
+        "back": "Kunde/Kundin",
+        "note": "S. 65"
+      },
+      {
+        "front": "diet",
+        "back": "Ernährung, Diät(kost)",
+        "note": "S. 65"
+      },
+      {
+        "front": "to mind",
+        "back": "etw dagegen haben",
+        "note": "S. 65"
+      },
+      {
+        "front": "toast",
+        "back": "Toast",
+        "note": "S. 65"
+      },
+      {
+        "front": "fried",
+        "back": "gebraten",
+        "note": "S. 65"
+      },
+      {
+        "front": "egg",
+        "back": "Ei",
+        "note": "S. 65"
+      },
+      {
+        "front": "bacon",
+        "back": "Schinkenspeck",
+        "note": "S. 65"
+      },
+      {
+        "front": "North",
+        "back": "Norden",
+        "note": "S. 65"
+      },
+      {
+        "front": "Scotland",
+        "back": "Schottland",
+        "note": "S. 65"
+      },
+      {
+        "front": "midday",
+        "back": "Mittag, Mittags-",
+        "note": "S. 65"
+      }
+    ]
   }
 ]
