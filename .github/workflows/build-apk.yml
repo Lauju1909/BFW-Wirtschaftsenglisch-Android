@@ -70,9 +70,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Trigger Custom F-Droid Repo Update
+      - name: Trigger Custom F-Droid Repo and Web Portal Update
         if: startsWith(github.ref, 'refs/tags/v')
         run: |
           gh workflow run update-repo.yml --repo Lauju1909/fdroid-repo || true
+          gh workflow run sync-upstream.yml --repo Lauju1909/vokabel-web || true
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TRIGGER }}
