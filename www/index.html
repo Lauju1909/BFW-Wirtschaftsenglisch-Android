@@ -48,8 +48,11 @@
       <button type="button" id="btn-open-import" class="btn btn-secondary">
         <span>📥 Importieren (Word, Excel, JSON, Text)</span>
       </button>
-      <button type="button" id="btn-download-all" class="btn btn-secondary" title="Alle Themen herunterladen und in VokabelStar & VokabelMeister aktivieren">
-        <span>⚡ Alle in beide Apps laden</span>
+      <button type="button" id="btn-download-bfw2" class="btn btn-primary" title="Alle 3 BFW 2 Themen herunterladen und sofort in VokabelStar & VokabelMeister aktivieren">
+        <span>⚡ Alle BFW 2 Themen in beide Apps laden</span>
+      </button>
+      <button type="button" id="btn-download-all" class="btn btn-secondary" title="Alle 10 Themen herunterladen und in VokabelStar & VokabelMeister aktivieren">
+        <span>⚡ Alle Themen in beide Apps laden</span>
       </button>
       <button type="button" id="btn-backup-all" class="btn btn-secondary" title="Alle Vokabellisten als JSON-Sicherung herunterladen">
         <span>💾 Komplett-Backup</span>
@@ -272,6 +275,37 @@
         </button>
         <button type="button" id="btn-cancel-import" class="btn btn-secondary">
           <span>Abbrechen</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Sync Success Dialog -->
+  <div id="sync-dialog-modal" class="modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="sync-dialog-title">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2 id="sync-dialog-title">🎉 Themen erfolgreich aktiviert!</h2>
+        <button type="button" id="btn-close-sync-modal" class="btn-close" aria-label="Schließen">✕</button>
+      </div>
+      <div class="modal-body-padded">
+        <p id="sync-dialog-msg" style="font-size: 1.05rem; line-height: 1.6; margin-bottom: 16px;">
+          Alle ausgewählten Themen wurden heruntergeladen und sind ab sofort in <strong>VokabelStar</strong> und <strong>VokabelMeister</strong> spielbereit!
+        </p>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+          Tippe auf eine App, um sie direkt zu starten, oder schließe dieses Fenster:
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <button type="button" id="btn-sync-open-star" class="btn btn-primary" style="font-size: 1rem; padding: 14px;">
+            <span>⭐ Jetzt in VokabelStar öffnen</span>
+          </button>
+          <button type="button" id="btn-sync-open-meister" class="btn btn-secondary" style="font-size: 1rem; padding: 14px;">
+            <span>✍️ Jetzt in VokabelMeister öffnen</span>
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn-sync-done" class="btn btn-secondary">
+          <span>Fertig</span>
         </button>
       </div>
     </div>

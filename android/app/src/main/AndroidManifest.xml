@@ -40,7 +40,12 @@
             android:exported="true" />
     </application>
 
-    <!-- Permissions -->
+    <!-- Package visibility for cross-app synchronization (Android 11+) -->
+    <queries>
+        <package android:name="de.lauri.vokabelstar" />
+        <package android:name="de.lauri.vokabelmeister" />
+    </queries>
 
+    <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

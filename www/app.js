@@ -68,6 +68,17 @@ class BFWVocabManager {
         }
       }
       this.saveTopics();
+    } else if (window.BFW_CATALOG && Array.isArray(window.BFW_CATALOG)) {
+      // Fehlende offizielle Themen (wie Jobfit Units) automatisch ergänzen
+      const existingIds = new Set(this.topics.map(t => t.id));
+      let addedAny = false;
+      window.BFW_CATALOG.forEach(defTopic => {
+        if (!existingIds.has(defTopic.id)) {
+          this.topics.push(JSON.parse(JSON.stringify(defTopic)));
+          addedAny = true;
+        }
+      });
+      if (addedAny) this.saveTopics();
     }
 
     this.updateStats();
@@ -99,15 +110,42 @@ class BFWVocabManager {
       this.downloaded.add(topic.id);
       this.syncToAndroidApps();
       this.announce(`Thema "${topic.title}" heruntergeladen und sofort in beiden Lern-Apps aktiviert!`);
+      this.showSyncSuccessDialog(`"${topic.title}"`, 1, topic.words ? topic.words.length : 0);
     }
+    this.render();
+  }
+
+  downloadBFW2Topics() {
+    const bfw2 = this.topics.filter(t => t.level === "BFW 2");
+    bfw2.forEach(t => this.downloaded.add(t.id));
+    this.syncToAndroidApps();
+    const count = bfw2.reduce((s, t) => s + (t.words ? t.words.length : 0), 0);
+    this.announce(`Alle 3 BFW 2 Themen (${count} Vokabeln) wurden heruntergeladen und sofort an VokabelStar und VokabelMeister übertragen.`);
+    this.showSyncSuccessDialog("BFW 2", bfw2.length, count);
     this.render();
   }
 
   downloadAllTopics() {
     this.topics.forEach(t => this.downloaded.add(t.id));
     this.syncToAndroidApps();
-    this.announce("Alle Themen wurden heruntergeladen und in VokabelStar und VokabelMeister aktiviert.");
+    const count = this.topics.reduce((s, t) => s + (t.words ? t.words.length : 0), 0);
+    this.announce(`Alle ${this.topics.length} Themen (${count} Vokabeln) wurden heruntergeladen und in VokabelStar und VokabelMeister aktiviert.`);
+    this.showSyncSuccessDialog("Alle Themen", this.topics.length, count);
     this.render();
+  }
+
+  showSyncSuccessDialog(scope, topicCount, wordCount) {
+    const modal = document.getElementById("sync-dialog-modal");
+    const msg = document.getElementById("sync-dialog-msg");
+    if (msg) {
+      msg.innerHTML = `<strong>${topicCount} Themen (${wordCount} Vokabeln) für ${scope}</strong> wurden heruntergeladen und sind ab sofort in <strong>VokabelStar</strong> und <strong>VokabelMeister</strong> spielbereit!`;
+    }
+    if (modal) modal.style.display = "flex";
+  }
+
+  closeSyncSuccessDialog() {
+    const modal = document.getElementById("sync-dialog-modal");
+    if (modal) modal.style.display = "none";
   }
 
   syncToAndroidApps() {
@@ -162,6 +200,10 @@ class BFWVocabManager {
       this.openImportModal();
     });
 
+    document.getElementById("btn-download-bfw2")?.addEventListener("click", () => {
+      this.downloadBFW2Topics();
+    });
+
     document.getElementById("btn-download-all")?.addEventListener("click", () => {
       this.downloadAllTopics();
     });
@@ -172,6 +214,22 @@ class BFWVocabManager {
 
     document.getElementById("btn-reset-catalog")?.addEventListener("click", () => {
       this.resetToDefaultCatalog();
+    });
+
+    // Sync Dialog Events
+    document.getElementById("btn-close-sync-modal")?.addEventListener("click", () => {
+      this.closeSyncSuccessDialog();
+    });
+    document.getElementById("btn-sync-done")?.addEventListener("click", () => {
+      this.closeSyncSuccessDialog();
+    });
+    document.getElementById("btn-sync-open-star")?.addEventListener("click", () => {
+      this.closeSyncSuccessDialog();
+      this.openApp("de.lauri.vokabelstar");
+    });
+    document.getElementById("btn-sync-open-meister")?.addEventListener("click", () => {
+      this.closeSyncSuccessDialog();
+      this.openApp("de.lauri.vokabelmeister");
     });
 
     // Vocab Modal Events
@@ -270,6 +328,7 @@ class BFWVocabManager {
         this.closeVocabModal();
         this.closeTopicModal();
         this.closeImportModal();
+        this.closeSyncSuccessDialog();
       }
     });
   }
