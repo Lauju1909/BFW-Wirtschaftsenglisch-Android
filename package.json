@@ -1,6 +1,6 @@
 {
   "name": "bfw_wirtschaftsenglisch_android",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "BFW Vokabel-Verwaltung für Wirtschaftsenglisch BFW 1 und BFW 2",
   "main": "index.js",
   "scripts": {
