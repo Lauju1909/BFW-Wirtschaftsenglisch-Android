@@ -1,7 +1,7 @@
 {
   "name": "bfw_wirtschaftsenglisch_android",
-  "version": "1.0.0",
-  "description": "BFW Wirtschaftsenglisch Vokabel-Hub für BFW 1 und BFW 2",
+  "version": "1.1.0",
+  "description": "BFW Vokabel-Verwaltung für Wirtschaftsenglisch BFW 1 und BFW 2",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

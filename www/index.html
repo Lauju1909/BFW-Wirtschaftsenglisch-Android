@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
   <meta name="theme-color" content="#0f1117">
   <meta name="color-scheme" content="dark">
-  <title>BFW Wirtschaftsenglisch – Vokabel-Hub BFW 1 & BFW 2</title>
+  <title>BFW Vokabel-Verwaltung – Wirtschaftsenglisch BFW 1 & BFW 2</title>
   <link rel="stylesheet" href="styles.css">
+  <!-- Offline Libraries for Word (.docx) and Excel (.xlsx) Import -->
+  <script src="xlsx.full.min.js"></script>
+  <script src="mammoth.browser.min.js"></script>
 </head>
 <body>
   <!-- Screenreader Live Announcer für TalkBack & NVDA -->
@@ -21,12 +24,12 @@
       <div class="header-left">
         <h1 class="app-title">
           <span class="app-logo" aria-hidden="true">🎓</span>
-          BFW Wirtschaftsenglisch
+          BFW Vokabel-Verwaltung
         </h1>
-        <span class="app-subtitle">Vokabel-Hub für BFW 1 & BFW 2 • Für VokabelStar & VokabelMeister</span>
+        <span class="app-subtitle">Zentrale Vokabel-Verwaltung für BFW 1 & BFW 2 • Export für VokabelStar & VokabelMeister</span>
       </div>
-      <div class="header-stats" aria-label="Themen-Übersicht">
-        <div class="stat-badge" title="Verfügbare Themen">
+      <div class="header-stats" aria-label="Statistiken">
+        <div class="stat-badge" title="Gesamtzahl Themen">
           <span class="stat-icon" aria-hidden="true">📚</span>
           <span id="stat-total-topics">8 Themen</span>
         </div>
@@ -37,21 +40,37 @@
       </div>
     </header>
 
+    <!-- Quick Action Bar -->
+    <nav class="action-bar" aria-label="Hauptaktionen">
+      <button type="button" id="btn-create-topic" class="btn btn-primary">
+        <span>➕ Neues Thema</span>
+      </button>
+      <button type="button" id="btn-open-import" class="btn btn-secondary">
+        <span>📥 Importieren (Word, Excel, JSON, Text)</span>
+      </button>
+      <button type="button" id="btn-backup-all" class="btn btn-secondary" title="Alle Vokabellisten als JSON-Sicherung herunterladen">
+        <span>💾 Komplett-Backup</span>
+      </button>
+      <button type="button" id="btn-reset-catalog" class="btn btn-secondary btn-outline" title="Originale BFW-Listen wiederherstellen">
+        <span>🔄 BFW Original wiederherstellen</span>
+      </button>
+    </nav>
+
     <!-- Filter & Suchleiste -->
-    <section class="controls-bar" role="search" aria-label="Themen filtern">
+    <section class="controls-bar" role="search" aria-label="Themen und Vokabeln filtern">
       <div class="filter-group">
-        <label for="search-input" class="sr-only">Themen oder Vokabeln durchsuchen</label>
-        <input type="search" id="search-input" placeholder="🔍 Thema oder Vokabel suchen (z. B. supplier, chef, Angebot) …">
+        <label for="search-input" class="sr-only">Themen oder Vokabelbegriffe durchsuchen</label>
+        <input type="search" id="search-input" placeholder="🔍 Suche nach Thema, Begriff oder Übersetzung (z. B. invoice, Angebot, Chef) …">
       </div>
-      <div class="filter-tabs" role="tablist" aria-label="Schulstufe wählen">
+      <div class="filter-tabs" role="tablist" aria-label="Kategorie filtern">
         <button class="filter-tab active" data-filter="ALL" role="tab" aria-selected="true">Alle Themen</button>
         <button class="filter-tab" data-filter="BFW 1" role="tab" aria-selected="false">BFW 1</button>
         <button class="filter-tab" data-filter="BFW 2" role="tab" aria-selected="false">BFW 2 (Handelskorrespondenz)</button>
-        <button class="filter-tab" data-filter="DOWNLOADED" role="tab" aria-selected="false">📥 Heruntergeladen (<span id="downloaded-count">0</span>)</button>
+        <button class="filter-tab" data-filter="CUSTOM" role="tab" aria-selected="false">✨ Eigene Themen</button>
       </div>
     </section>
 
-    <!-- Hauptinhalt -->
+    <!-- Hauptinhalt: Themen-Karten -->
     <main id="main-content" class="main-content" role="main">
       <div class="topics-grid" id="topics-container">
         <!-- Dynamisch generierte Themen-Karten -->
@@ -60,14 +79,16 @@
 
     <!-- Footer -->
     <footer class="app-footer" role="contentinfo">
-      <p>BFW Wirtschaftsenglisch © 2026 • Entwickelt für Berufsfachschule Wirtschaft am LWL-Berufskolleg</p>
-      <p><small>100% barrierefrei • Kompatibel mit VokabelStar & VokabelMeister • Offline nutzbar</small></p>
+      <p>BFW Vokabel-Verwaltung © 2026 • LWL-Berufskolleg Fachbereich Wirtschaft</p>
+      <p><small>100% barrierefrei für Screenreader (NVDA / TalkBack) • 100% Offline • Universeller Export</small></p>
     </footer>
   </div>
 
-  <!-- Modal / Dialog zum Anzeigen & Durchsuchen aller Vokabeln eines Themas -->
+  <!-- ======================================================== -->
+  <!-- MODAL 1: Vokabel-Verwaltung (Detailansicht eines Themas) -->
+  <!-- ======================================================== -->
   <div id="vocab-modal" class="modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modal-topic-title">
-    <div class="modal-box">
+    <div class="modal-box modal-lg">
       <div class="modal-header">
         <div class="modal-title-wrap">
           <span id="modal-topic-icon" class="modal-topic-icon" aria-hidden="true">💼</span>
@@ -76,33 +97,184 @@
             <div id="modal-topic-sub" class="modal-subtitle">Untertitel • 0 Vokabeln</div>
           </div>
         </div>
-        <button type="button" id="btn-close-modal" class="btn-close" aria-label="Dialog schließen">✕</button>
+        <button type="button" id="btn-close-vocab-modal" class="btn-close" aria-label="Schließen">✕</button>
       </div>
 
+      <!-- Vokabel hinzufügen / bearbeiten -->
+      <section class="card vocab-form-card" aria-label="Vokabel hinzufügen oder bearbeiten">
+        <h3 id="vocab-form-heading" class="form-title">➕ Neue Vokabel hinzufügen</h3>
+        <form id="vocab-form" onsubmit="return false;" class="vocab-inline-form">
+          <input type="hidden" id="edit-word-index" value="-1">
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="input-word-front">Englischer Begriff (Front):</label>
+              <div class="input-with-btn">
+                <input type="text" id="input-word-front" required placeholder="z. B. invoice">
+                <button type="button" id="btn-test-speak" class="btn-icon" title="Englische Aussprache testen" aria-label="Aussprache testen">🔊</button>
+              </div>
+            </div>
+            <div class="form-group flex-1">
+              <label for="input-word-back">Deutsche Übersetzung (Back):</label>
+              <input type="text" id="input-word-back" required placeholder="z. B. Rechnung">
+            </div>
+            <div class="form-group flex-1">
+              <label for="input-word-note">Notiz / Kontext (optional):</label>
+              <input type="text" id="input-word-note" placeholder="z. B. Commercial correspondence">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="button" id="btn-save-word" class="btn btn-primary">
+              <span id="btn-save-word-text">Vokabel speichern</span>
+            </button>
+            <button type="button" id="btn-cancel-edit-word" class="btn btn-secondary" style="display: none;">
+              <span>Abbrechen</span>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Vokabel-Suche im Thema -->
       <div class="modal-search">
-        <input type="search" id="modal-search-input" placeholder="🔍 In dieser Themenliste suchen …" aria-label="Vokabeln filtern">
+        <input type="search" id="modal-search-input" placeholder="🔍 In diesem Thema suchen …" aria-label="Vokabeln im Thema suchen">
       </div>
 
+      <!-- Vokabelliste -->
       <div class="modal-body">
         <ul class="vocab-preview-list" id="modal-vocab-list" role="list">
-          <!-- Vokabelpaare -->
+          <!-- Dynamisch gerenderte Vokabel-Zeilen -->
         </ul>
       </div>
 
+      <!-- Export- & Übergabe-Optionen -->
       <div class="modal-footer">
-        <button type="button" id="modal-btn-download-star" class="btn btn-primary">
-          <span>⭐ Für VokabelStar herunterladen</span>
+        <button type="button" id="modal-btn-download-star" class="btn btn-primary" title="Exportiert Datei zum Öffnen/Importieren in VokabelStar">
+          <span>⭐ Für VokabelStar exportieren</span>
         </button>
-        <button type="button" id="modal-btn-download-meister" class="btn btn-secondary">
-          <span>✍️ Für VokabelMeister herunterladen</span>
+        <button type="button" id="modal-btn-download-meister" class="btn btn-secondary" title="Exportiert Datei zum Öffnen/Importieren in VokabelMeister">
+          <span>✍️ Für VokabelMeister exportieren</span>
         </button>
-        <button type="button" id="modal-btn-download-txt" class="btn btn-secondary">
-          <span>📄 Textliste (.txt)</span>
+        <button type="button" id="modal-btn-download-txt" class="btn btn-secondary" title="Als einfache Textliste herunterladen">
+          <span>📄 Textdatei (.txt)</span>
+        </button>
+        <button type="button" id="modal-btn-share-topic" class="btn btn-secondary" title="Per Android-Teilen oder Menü weiterleiten">
+          <span>📤 Teilen</span>
         </button>
       </div>
     </div>
   </div>
 
+  <!-- ======================================================== -->
+  <!-- MODAL 2: Neues Thema / Thema bearbeiten                  -->
+  <!-- ======================================================== -->
+  <div id="topic-modal" class="modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="topic-modal-title">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2 id="topic-modal-title">Thema bearbeiten</h2>
+        <button type="button" id="btn-close-topic-modal" class="btn-close" aria-label="Schließen">✕</button>
+      </div>
+      <div class="modal-body-padded">
+        <form id="topic-form" onsubmit="return false;">
+          <input type="hidden" id="edit-topic-id" value="">
+          <div class="form-group">
+            <label for="input-topic-title">Thementitel:*</label>
+            <input type="text" id="input-topic-title" required placeholder="z. B. Unit 4 – Marketing">
+          </div>
+          <div class="form-group">
+            <label for="input-topic-sub">Untertitel / Kontext:*</label>
+            <input type="text" id="input-topic-sub" required placeholder="z. B. Fachbegriffe zur Vermarktung">
+          </div>
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="select-topic-level">Schulstufe / Kategorie:*</label>
+              <select id="select-topic-level">
+                <option value="BFW 1">BFW 1</option>
+                <option value="BFW 2">BFW 2</option>
+                <option value="EIGENES" selected>Eigenes Thema</option>
+              </select>
+            </div>
+            <div class="form-group" style="width: 100px;">
+              <label for="input-topic-icon">Icon-Symbol:</label>
+              <input type="text" id="input-topic-icon" value="📚" style="text-align: center; font-size: 20px;">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-topic-desc">Beschreibung:</label>
+            <textarea id="input-topic-desc" rows="3" placeholder="Kurze Beschreibung des Lerninhalts …"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn-save-topic" class="btn btn-primary">
+          <span>Thema speichern</span>
+        </button>
+        <button type="button" id="btn-cancel-topic" class="btn btn-secondary">
+          <span>Abbrechen</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL 3: Universal-Import                                -->
+  <!-- ======================================================== -->
+  <div id="import-modal" class="modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="import-modal-title">
+    <div class="modal-box modal-lg">
+      <div class="modal-header">
+        <h2 id="import-modal-title">📥 Vokabeln importieren</h2>
+        <button type="button" id="btn-close-import-modal" class="btn-close" aria-label="Schließen">✕</button>
+      </div>
+      <div class="modal-body-padded">
+        <!-- Zielauswahl -->
+        <fieldset class="import-target-fieldset">
+          <legend><strong>Import-Ziel auswählen:</strong></legend>
+          <div class="radio-option">
+            <input type="radio" id="target-mode-new" name="target-mode" value="new" checked>
+            <label for="target-mode-new">Als <strong>neues Thema</strong> anlegen</label>
+          </div>
+          <div class="form-group sub-option" id="group-new-topic-name">
+            <label for="import-new-topic-name">Neuer Thementitel:</label>
+            <input type="text" id="import-new-topic-name" placeholder="z. B. Importierte Vokabeln">
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="target-mode-existing" name="target-mode" value="existing">
+            <label for="target-mode-existing">Zu <strong>bestehendem Thema</strong> hinzufügen</label>
+          </div>
+          <div class="form-group sub-option" id="group-existing-topic-select" style="display: none;">
+            <label for="import-existing-topic-select">Ziel-Thema wählen:</label>
+            <select id="import-existing-topic-select">
+              <!-- Dynamisch befüllt -->
+            </select>
+          </div>
+        </fieldset>
+
+        <!-- Datei-Auswahl -->
+        <div class="form-group" style="margin-top: 16px;">
+          <label for="import-file-input"><strong>Option A: Datei auswählen (Word, Excel, CSV, JSON, TXT):</strong></label>
+          <input type="file" id="import-file-input" accept=".docx,.xlsx,.xls,.csv,.json,.txt" class="file-input-field">
+        </div>
+
+        <div style="text-align: center; margin: 12px 0; color: var(--text-muted); font-weight: bold;">— ODER —</div>
+
+        <!-- Textfeld-Import -->
+        <div class="form-group">
+          <label for="import-text-input"><strong>Option B: Text hier einfügen (z. B. <code>Englisch = Deutsch</code> pro Zeile):</strong></label>
+          <textarea id="import-text-input" rows="6" placeholder="purchase = Einkauf&#10;supplier = Lieferant&#10;delivery = Lieferung"></textarea>
+        </div>
+
+        <div id="import-status" class="status-msg" style="display: none;" role="status"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn-execute-import" class="btn btn-primary">
+          <span>🚀 Vokabeln importieren</span>
+        </button>
+        <button type="button" id="btn-cancel-import" class="btn btn-secondary">
+          <span>Abbrechen</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="bfw_catalog.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
