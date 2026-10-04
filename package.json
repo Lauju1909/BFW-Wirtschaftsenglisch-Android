@@ -1,0 +1,19 @@
+{
+  "name": "bfw_wirtschaftsenglisch_android",
+  "version": "1.0.0",
+  "description": "BFW Wirtschaftsenglisch Vokabel-Hub für BFW 1 und BFW 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["vocabulary", "hub", "bfw", "wirtschaftsenglisch", "talkback"],
+  "author": "Lauri",
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/app": "^8.1.1",
+    "@capacitor/cli": "^8.5.2",
+    "@capacitor/core": "^8.5.2",
+    "@capacitor/haptics": "^8.0.2"
+  }
+}

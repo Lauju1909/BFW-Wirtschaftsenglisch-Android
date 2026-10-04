@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">BFW Wirtschaftsenglisch</string>
+    <string name="title_activity_main">BFW Wirtschaftsenglisch</string>
+    <string name="package_name">de.lauri.bfwenglisch</string>
+    <string name="custom_url_scheme">de.lauri.bfwenglisch</string>
+</resources>

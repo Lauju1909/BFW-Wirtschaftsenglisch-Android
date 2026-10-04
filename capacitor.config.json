@@ -1,0 +1,8 @@
+{
+  "appId": "de.lauri.bfwenglisch",
+  "appName": "BFW Wirtschaftsenglisch",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}
