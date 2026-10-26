@@ -5,6 +5,128 @@
  * 100% Barrierefrei (NVDA / TalkBack).
  */
 
+const ALL_EMOJI_REGEX = /[\u{1F000}-\u{1FFFF}\u{2600}-\u{27BF}\u{2300}-\u{23FF}\u{2B00}-\u{2BFF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA9F}\u{231A}-\u{231B}\u{23E9}-\u{23F3}\u{23F8}-\u{23FA}\u{25AA}-\u{25AB}\u{25B6}\u{25C0}\u{25FB}-\u{25FE}\u{2614}-\u{2615}\u{2648}-\u{2653}\u{267F}\u{2693}\u{26A1}\u{26AA}-\u{26AB}\u{26BD}-\u{26BE}\u{26C4}-\u{26C5}\u{26CE}\u{26D4}\u{26EA}\u{26F2}-\u{26F3}\u{26F5}\u{26FA}\u{26FD}\u{2702}\u{2705}\u{2708}-\u{270D}\u{270F}\u{2712}\u{2714}\u{2716}\u{271D}\u{2721}\u{2728}\u{2733}-\u{2734}\u{2744}\u{2747}\u{274C}\u{274E}\u{2753}-\u{2755}\u{2757}\u{2763}-\u{2764}\u{2795}-\u{2797}\u{27A1}\u{27B0}\u{27BF}\u{2934}-\u{2935}\u{2B05}-\u{2B07}\u{2B1B}-\u{2B1C}\u{2B50}\u{2B55}\u{3030}\u{303D}\u{3297}\u{3299}\u{FE0F}]/gu;
+
+function triggerAccessibleFeedback(type = 'tap') {
+  if (typeof navigator !== 'undefined' && navigator.vibrate) {
+    const patterns = {
+      tap: [15],
+      success: [30, 50, 30],
+      warning: [40, 60, 40],
+      error: [80, 50, 80],
+      boundary: [25, 25, 25]
+    };
+    try { navigator.vibrate(patterns[type] || [15]); } catch (_) {}
+  }
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    if (!window.__sharedAudioCtx) window.__sharedAudioCtx = new AudioContext();
+    const ctx = window.__sharedAudioCtx;
+    if (ctx.state === 'suspended') ctx.resume();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    const now = ctx.currentTime;
+    
+    if (type === 'success') {
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(523.25, now); // C5
+      osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+      gain.gain.setValueAtTime(0.12, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+      osc.start(now);
+      osc.stop(now + 0.22);
+    } else if (type === 'error') {
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(220, now); // A3
+      osc.frequency.setValueAtTime(164.81, now + 0.09); // E3
+      gain.gain.setValueAtTime(0.15, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+      osc.start(now);
+      osc.stop(now + 0.25);
+    } else if (type === 'warning') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(440, now);
+      osc.frequency.setValueAtTime(392, now + 0.07);
+      gain.gain.setValueAtTime(0.1, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+      osc.start(now);
+      osc.stop(now + 0.18);
+    } else if (type === 'boundary') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(330, now);
+      gain.gain.setValueAtTime(0.08, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+      osc.start(now);
+      osc.stop(now + 0.09);
+    } else { // tap
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(800, now);
+      gain.gain.setValueAtTime(0.05, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+      osc.start(now);
+      osc.stop(now + 0.04);
+    }
+  } catch (_) {}
+}
+
+class AriaLiveQueue {
+  constructor() {
+    this.queue = [];
+    this.isProcessing = false;
+    this.timer = null;
+  }
+
+  announce(message, priority = 'polite') {
+    if (!message) return;
+    const cleanMsg = String(message).replace(ALL_EMOJI_REGEX, '').trim();
+    if (!cleanMsg) return;
+
+    if (priority === 'assertive') {
+      if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = null;
+      }
+      this.queue.unshift({ message: cleanMsg, priority: 'assertive' });
+      this.isProcessing = false;
+      this.processNext();
+    } else {
+      this.queue.push({ message: cleanMsg, priority: 'polite' });
+      if (!this.isProcessing) {
+        this.processNext();
+      }
+    }
+  }
+
+  processNext() {
+    if (this.queue.length === 0) {
+      this.isProcessing = false;
+      return;
+    }
+
+    this.isProcessing = true;
+    const item = this.queue.shift();
+    const liveEl = document.getElementById("sr-announcer");
+
+    if (liveEl) {
+      liveEl.textContent = '';
+      setTimeout(() => {
+        liveEl.textContent = item.message;
+        const readDuration = Math.max(1200, item.message.length * 65);
+        this.timer = setTimeout(() => {
+          this.processNext();
+        }, readDuration);
+      }, 50);
+    } else {
+      this.processNext();
+    }
+  }
+}
+
+const ariaLiveQueue = new AriaLiveQueue();
+
 class BFWVocabManager {
   constructor() {
     this.topics = [];
@@ -32,12 +154,8 @@ class BFWVocabManager {
     } catch (e) { }
   }
 
-  announce(msg) {
-    const el = document.getElementById("sr-announcer");
-    if (el) {
-      el.textContent = "";
-      setTimeout(() => { el.textContent = msg; }, 50);
-    }
+  announce(msg, priority = 'polite') {
+    ariaLiveQueue.announce(msg, priority);
   }
 
   // ------------------------------------------
