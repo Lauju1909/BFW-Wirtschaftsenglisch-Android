@@ -12,6 +12,7 @@ public class MainActivity extends BridgeActivity {
         super.onCreate(savedInstanceState);
 
         if (bridge != null && bridge.getWebView() != null) {
+            bridge.getWebView().addJavascriptInterface(new RustAppCore(), "RustCore");
             bridge.getWebView().addJavascriptInterface(new Object() {
                 @JavascriptInterface
                 public void syncTopics(String json) {

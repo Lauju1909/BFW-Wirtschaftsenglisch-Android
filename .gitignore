@@ -28,3 +28,6 @@ keystore_credentials*.txt
 .DS_Store
 Thumbs.db
 .vscode/
+
+rust-core/target/
+android/app/src/main/jniLibs/
